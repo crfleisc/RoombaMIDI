@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public abstract class AbstractConverter {
-	protected final String CSV2MIDI = "exe/csvmidi.exe";
-	protected final String MIDI2CSV = "exe/midicsv.exe";
+	protected final String CSV2MIDI = "utilities/csvmidi.exe";
+	protected final String MIDI2CSV = "utilities/midicsv.exe";
 	
 	protected Scanner reader;
 	protected String inputPath;
