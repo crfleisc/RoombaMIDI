@@ -9,6 +9,9 @@ public abstract class AbstractConverter {
 	protected final String CSV2MIDI = "utilities/csvmidi.exe";
 	protected final String MIDI2CSV = "utilities/midicsv.exe";
 	
+	private final int DIRECTORY_OFFSET = 8; // hides directory info to user
+	private final String SONGS_DIRECTORY = ".\\songs\\"; // input/output folder for working files
+	
 	protected Scanner reader;
 	protected String inputPath;
 	protected String outputPath;
@@ -26,7 +29,7 @@ public abstract class AbstractConverter {
 			System.out.println("exiting...");
 			System.exit(0);
 		}
-		return inputPath;
+		return SONGS_DIRECTORY + inputPath;
 	}
 
 	protected String getCSV(){
@@ -38,7 +41,7 @@ public abstract class AbstractConverter {
 			System.out.println("exiting...");
 			System.exit(0);
 		}
-		return inputPath;
+		return SONGS_DIRECTORY + inputPath;
 	}
 	
 	protected String getOutput(){
@@ -50,10 +53,10 @@ public abstract class AbstractConverter {
 			System.out.println("exiting...");
 			System.exit(0);
 		}
-		return outputPath;
+		return SONGS_DIRECTORY + outputPath;
 	}
 	
-	@SuppressWarnings("unused")
+	// TODO add comments
 	protected boolean testInput(String inputPath, String type) {
 		if(!inputPath.split("\\.")[inputPath.split("\\.").length-1].contains(type))
 			return false;
@@ -65,7 +68,7 @@ public abstract class AbstractConverter {
 		return true;
 	}
 	
-	@SuppressWarnings("unused")
+	// TODO add comments
 	protected void testOutput(String outputPath) {
 		File test = null;
 		try{
@@ -90,6 +93,7 @@ public abstract class AbstractConverter {
 		}
 	}
 	
+	// TODO add comments
 	protected void run(String program, String input, String output){
 		try {
 			Process process = new ProcessBuilder(program, input, output).start();
@@ -106,11 +110,12 @@ public abstract class AbstractConverter {
 		}
 	}
 	
+	
+	//TODO iterates on file but never uses. Can show multiple files?
 	// 0 = midi, 1 = txt, 2 = both
-	@SuppressWarnings("unused")
 	protected void listFiles(int whichFiles){
 		System.out.println("\n ***** AVAILABLE FILES *****");
-		File folder = new File("./");
+		File folder = new File("./songs");
 		File[] listOfFiles = folder.listFiles();
 		if(listOfFiles != null && listOfFiles.length > 0){
 			File[] temp = new File[listOfFiles.length];
@@ -145,7 +150,7 @@ public abstract class AbstractConverter {
 
 		for(File file : listOfFiles){
 			if(file != null){
-				System.out.println(" - " + file.toString().substring(2, file.toString().length()));
+				System.out.println(" - " + file.toString().substring(DIRECTORY_OFFSET, file.toString().length()));
 			}
 		}
 	}
