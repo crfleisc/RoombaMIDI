@@ -22,7 +22,7 @@ public abstract class AbstractConverter {
 	
 	protected String getMidi(){
 		System.out.println("\nENTER MIDI FILE NAME - or - '0' TO EXIT\n"
-				+ "EG: <mySong>");
+				+ "EG: <mySong.midi>");
 		System.out.print(" > ");
 		inputPath = reader.nextLine();
 		if(inputPath.equals("0")){
@@ -56,19 +56,20 @@ public abstract class AbstractConverter {
 		return SONGS_DIRECTORY + outputPath;
 	}
 	
-	// TODO add comments
+	// Confirms the inputPath is a file of the correct type
 	protected boolean testInput(String inputPath, String type) {
 		if(!inputPath.split("\\.")[inputPath.split("\\.").length-1].contains(type))
 			return false;
 		try{
-			File test = new File(inputPath);
+			File test = new File(inputPath); // confirm file exists
 		} catch (Throwable e){
 			return false;
 		}
 		return true;
 	}
 	
-	// TODO add comments
+	// Confirms outputPath is valid and prompts before overwriting 
+	// an existing file of that name
 	protected void testOutput(String outputPath) {
 		File test = null;
 		try{
@@ -93,16 +94,20 @@ public abstract class AbstractConverter {
 		}
 	}
 	
-	// TODO add comments
+	// 
 	protected void run(String program, String input, String output){
 		try {
 			Process process = new ProcessBuilder(program, input, output).start();
-			while(process.isAlive())
-			{
+			while(process.isAlive()){
 				//just wait
 			}
 			if(process.exitValue() != 0){
 				System.out.println("WARNING: Conversion process may have failed");
+				try {
+					Thread.sleep(2000); // Allows user to see the warning before menu is displayed again
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		} catch (IOException e) {
 			System.err.println("Unable to start process: " + program);
