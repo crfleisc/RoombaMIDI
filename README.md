@@ -45,6 +45,7 @@ conversion between MIDI and CSV. This is included in the "exe" directory.
 - [ ] Verify that the duration of song segments is being calculated correctly  
 - [ ] Convert text-based menu to GUI
 - [ ] Continuity as to whether file extensions need to be typed in, or allow for either case
+- [ ] Investigate unused File in AbstractConverter - functionality seems fine?
 - [x] Move input and output to dedicated folders
 - [x] Rename "exe" directory to "utilities"
-- [ ] Output prompts should specify the file type being outputted. Eg. instead of "OUTPUT FILENAME", "OUTPUT CSV FILENAME".
+- [x] Output prompts should specify the file type being outputted. Eg. instead of "OUTPUT FILENAME", "OUTPUT CSV FILENAME".
