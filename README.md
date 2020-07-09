@@ -34,8 +34,8 @@ Uses a simple command line text interface:
 - Songs must be single channel (one note played at a time) because the iRobot Create 
 is only capable of playing one note at a time.
 
-- Input files must be in the program's root directory to be recognized. Output files also appear
-in the root directory.
+- Input files must be in the "songs" directory to be recognized. Output files also appear in 
+the songs directory.
 
 ## References
 Uses MIDI File CSV Editing Tools by John Walker http://www.fourmilab.ch/webtools/midicsv/ to handle
